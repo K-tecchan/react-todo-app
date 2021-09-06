@@ -12,19 +12,20 @@ const Input = () => {
     document.title  = work 
                     ? `タスクに${work}が追加されました`
                     : 'react-todo-app';
-    let output = document.getElementById('output');
-    let task = document.createElement('li');
-    let taskText = document.createTextNode(work);
+    const output = document.getElementById('output');
+    const task = document.createElement('li');
+    const taskText = document.createTextNode(work);
     task.appendChild(taskText);
     output.appendChild(task);
-  });
+  }, [ work ]);
 
   return (
     <>
       <ul id='output'></ul>
       <div>
-        <form>
-          <input type="text" id="text"/>
+        <form onSubmit={() => false}>
+          <input type="text" name='task' id="text"/>
+          <input type="text" name='dammy' style={{display: 'none'}}/>
           <button onClick={() => setWork(work => work = document.getElementById('text').value)} type='button'>enter</button>
         </form>
       </div>
