@@ -1,32 +1,37 @@
 import { useEffect, useRef, useState } from "react";
+import Remove from './remove';
 
 const Input = () => {
-  const [ work, setWork ] = useState('');
+  const [work, setWork] = useState([]);
   const isFirstRun = useRef(true);
+
+  const addWork = () => setWork([...work, document.getElementById('text').value]);
 
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
     }
-    document.title  = work 
-                    ? `タスクに${work}が追加されました`
+    document.title  = work
+                    ? `タスクに「${document.getElementById('text').value}」が追加されました`
                     : 'react-todo-app';
-    const output = document.getElementById('output');
-    const task = document.createElement('li');
-    const taskText = document.createTextNode(work);
-    task.appendChild(taskText);
-    output.appendChild(task);
-  }, [ work ]);
+    console.log(work);
+  }, [work]);
 
   return (
     <>
-      <ul id='output'></ul>
+      <ul id='output'>
+        {work.map((w, i) => (
+          <li id={i} key={i}>
+            {w}
+          </li>
+        ))}
+      </ul>
       <div>
-        <form onSubmit={() => false}>
+        <form>
           <input type="text" name='task' id="text"/>
           <input type="text" name='dammy' style={{display: 'none'}}/>
-          <button onClick={() => setWork(work => work = document.getElementById('text').value)} type='button'>enter</button>
+          <button onClick={addWork} type='button'>enter</button>
         </form>
       </div>
     </>
