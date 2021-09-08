@@ -2,9 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import Remove from './remove';
 
 const Input = () => {
+  // stateを宣言。workを最初は空の配列として宣言
   const [work, setWork] = useState([]);
+  // useRefを使うと変数が変更されても更新されない
   const isFirstRun = useRef(true);
 
+  // returnの前の部分で関数とかは定義しておく
+  // これはスプレッド構文の左側に入れたい値を置いてる
   const addWork = () => setWork([...work, document.getElementById('text').value]);
 
   useEffect(() => {
@@ -15,7 +19,6 @@ const Input = () => {
     document.title  = work
                     ? `タスクに「${document.getElementById('text').value}」が追加されました`
                     : 'react-todo-app';
-    console.log(work);
   }, [work]);
 
   return (
@@ -24,6 +27,7 @@ const Input = () => {
         {work.map((w, i) => (
           <li id={i} key={i}>
             {w}
+            <Remove id={i} />
           </li>
         ))}
       </ul>
@@ -31,7 +35,7 @@ const Input = () => {
         <form>
           <input type="text" name='task' id="text"/>
           <input type="text" name='dammy' style={{display: 'none'}}/>
-          <button onClick={addWork} type='button'>enter</button>
+          <button onClick={addWork} type='button'>add</button>
         </form>
       </div>
     </>
