@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Remove from './remove';
+import './css/input.min.css';
 
 const Input = () => {
   // stateを宣言。workを最初は空の配列として宣言
@@ -27,17 +28,15 @@ const Input = () => {
         {work.map((w, i) => (
           <li id={i} key={i}>
             {w}
-            <Remove id={i} />
+            <Remove id={i} work={w}/>
           </li>
         ))}
       </ul>
-      <div>
-        <form>
-          <input type="text" name='task' id="text"/>
-          <input type="text" name='dammy' style={{display: 'none'}}/>
-          <button onClick={addWork} type='button'>add</button>
-        </form>
-      </div>
+      <form id="input">
+        <input type="text" name='task' id="text"/>
+        <input type="text" name='dammy' style={{display: 'none'}}/>
+        <button onClick={addWork} type='button' id="add-work">add</button>
+      </form>
     </>
   );
 }

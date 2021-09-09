@@ -1,0 +1,25 @@
+form {
+  width: min-content;
+}
+
+#input {
+  margin: 0 auto;
+  text-align: center;
+  #text {
+    border: none;
+    border-bottom: 1px solid blue;
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+#output {
+  padding: 0;
+  margin: 30px auto;
+  li {
+    margin-bottom: 20px;
+    list-style: none;
+    font-size: 20px;
+    text-align: center;
+  }
+}
